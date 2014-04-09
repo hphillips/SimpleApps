@@ -1,0 +1,71 @@
+<head>
+<script type="text/javascript">
+	function loop(){
+		var values = new Array();
+		var variables;
+		
+		variables=document.getElementById("variables").value.split(";");
+		
+		var values_to_process = document.getElementById("values").value.split(";");
+		
+		for(var i = 0; i<values_to_process.length; i++){
+			var cur=values_to_process[i];
+			if(cur.charAt(0)=="(" && cur.charAt(cur.length-1)==")"){
+				values.push(cur.substr(1,cur.length-2).split(","))
+			}else if(cur.search("->")>=0){
+				var list=new Array();
+				var start=cur.split("->")[0];
+				var end=cur.split("->")[1];
+				
+				var cur_iter=start;
+				while(cur_iter==end || cur_iter<end==start<end){
+					list.push(cur_iter);
+					if(start<end){cur_iter++;}
+					else {cur_iter--;}
+				}
+				values.push(list)
+			}else{
+			}
+		}
+			
+		
+		var output=document.getElementById("text").value.trim();
+		
+		for(var i =0; i<variables.length;i++){
+			var temp_output="";
+			var cur_values=values[i];
+			var pattern=new RegExp("\\["+variables[i]+"\\]","g");
+			
+			for(var j=0; j<cur_values.length; j++){
+				temp_output=temp_output+output.replace(pattern, cur_values[j])+"\n";
+			}
+			output=temp_output.trim();
+		}
+		
+		
+		document.getElementById("output").value=output.trim();
+	}
+</script>
+	
+</head>
+
+<body>
+Variables: 
+<br />
+<input id="variables" size="10" value="a" /> 
+ <br />
+Values: 
+<br />
+<input id="values" size="40" value="1->3" /> 
+ <br />
+Text: 
+ <br />
+ <textarea id="text" wrap="logical" rows="3" columns="200">max(case when datediff('d', a.date, b.date)=[a] then 1 end) as D[a]Ret,
+ </textarea>
+ <br />
+ <input onclick="loop()" type="button" value="Run" />
+ <br />
+ Output:
+  <br />
+ <textarea id="output" wrap="logical" rows="30" columns="200"></textarea>
+</body>
