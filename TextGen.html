@@ -37,7 +37,7 @@
 			var pattern=new RegExp("\\["+variables[i]+"\\]","g");
 			
 			for(var j=0; j<cur_values.length; j++){
-				temp_output=temp_output+output.replace(pattern, cur_values[j])+"\n";
+				temp_output=temp_output+output.replace(pattern, cur_values[j].trim())+"\n";
 			}
 			output=temp_output.trim();
 		}
