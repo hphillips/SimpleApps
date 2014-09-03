@@ -19,7 +19,7 @@
 				
 				var cur_iter=start;
 				while(cur_iter==end || cur_iter<end==start<end){
-					list.push(cur_iter);
+					list.push(cur_iter.toString());
 					if(start<end){cur_iter++;}
 					else {cur_iter--;}
 				}
@@ -37,7 +37,7 @@
 			var pattern=new RegExp("\\["+variables[i]+"\\]","g");
 			
 			for(var j=0; j<cur_values.length; j++){
-				temp_output=temp_output+output.replace(pattern, cur_values[j])+"\n";
+				temp_output=temp_output+output.replace(pattern, cur_values[j].trim())+"\n";
 			}
 			output=temp_output.trim();
 		}
@@ -67,9 +67,7 @@ Text:
  <br />
  Output:
   <br />
+ <div>
  <textarea id="output" wrap="logical" rows="30" cols="100"></textarea>
- <br />
- Variables is a semicolon separate lists of variable names.
- <br />
- Values can take the form of [Integer]->[Integer] or (value1,value2,value3,...) and should be semicolon separated.
+ </div>
 </body>
