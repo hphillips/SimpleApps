@@ -14,7 +14,7 @@
 				values.push(cur.substr(1,cur.length-2).split(","))
 			}else if(cur.search("->")>=0){
 				var list=new Array();
-				var start=praseInt(cur.split("->")[0].trim());
+				var start=parseInt(cur.split("->")[0].trim());
 				var end=parseInt(cur.split("->")[1].trim());
 				
 				var cur_iter=start;
